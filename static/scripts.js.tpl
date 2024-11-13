@@ -6,15 +6,9 @@ document.getElementById("savestudent").onclick = function(event) {
     event.preventDefault(); // Prevents automatic form submission
 
     // Captures field values
-    var studentId = $('#studentid').val().trim();
     var name = $('#name').val().trim();
     var studentClass = $('#student_class').val().trim();
     var age = $('#age').val().trim();
-
-    if (!studentId) {
-        alert("Please enter a Student ID.");
-        return;
-    }
 
     if (!name || !studentClass || !age) {
         alert("Please fill in all fields.");
@@ -22,7 +16,6 @@ document.getElementById("savestudent").onclick = function(event) {
     }
 
     var inputData = {
-        "studentid": studentId,
         "name": name,
         "student_class": studentClass,
         "age": age
@@ -40,7 +33,6 @@ document.getElementById("savestudent").onclick = function(event) {
         success: function(response) {
             alert("Student Data Saved!");
             // Clear fields after saving
-            $('#studentid').val('');
             $('#name').val('');
             $('#student_class').val('');
             $('#age').val('');
@@ -71,7 +63,6 @@ document.getElementById("getstudents").onclick = function(event) {
             $('#studentTable tbody').empty(); // Clear the table before updating
             jQuery.each(response, function(i, data) {
                 $("#studentTable tbody").append("<tr> \
-                    <td>" + data['studentid'] + "</td> \
                     <td>" + data['name'] + "</td> \
                     <td>" + data['student_class'] + "</td> \
                     <td>" + data['age'] + "</td> \

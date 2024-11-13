@@ -1,3 +1,4 @@
+import uuid
 import boto3
 import json
 import os
@@ -26,20 +27,22 @@ def handle_get_request():
         while 'LastEvaluatedKey' in response:
             response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
             data.extend(response.get('Items', []))
-        
-        return response_api(200, data)
+            
+        filtered_data = [{k: v for k, v in item.items() if k != 'studentid'} for item in data]
+        return response_api(200, filtered_data)
     
     except ClientError as e:
         return handle_error(e)
 
 
 def handle_post_request(event):
+    student_id = str(uuid.uuid4())
+    
     if not event.get("body"):
         return response_api(400, "Error: Request body not found.")
     
     try:
         body = json.loads(event["body"])
-        student_id = body.get("studentid")
         name = body.get("name")
         student_class = body.get("student_class")
         age = body.get("age")
