@@ -1,7 +1,9 @@
 # serverless-static-site-aws
- Infrastructure for a static website on AWS using S3, CloudFront, Lambda, and DynamoDB. This project sets up a serverless architecture for hosting static content with global distribution and integration with a backend API for dynamic operations.
+Infrastructure for a static website on AWS using S3, CloudFront, Lambda, and DynamoDB. 
+ 
+This project sets up a serverless architecture for hosting static content with global distribution and integration with a backend API for dynamic operations.
 
-This project consists of receiving information about student registration and queries through the front end, through a static website with HTML and Java Script. The Java Script triggers the API Gateway with the POST/GET method, triggering the Lambda that will query/include the student in Dynamodb. 
+The front-end will receive the information about student registration and queries through the front end, through a static website with HTML and Java Script. The Java Script triggers the API Gateway with the POST/GET method, triggering the Lambda that will query/include the student in Dynamodb. 
 The resources used were: CloudFront, S3, API Gateway, Lambda and Dynamodb.
 The infrastructure was provisioned using Terraform.
 
